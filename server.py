@@ -1193,5 +1193,6 @@ if __name__ == '__main__':
     print("[SERVER] Health: http://localhost:3001/health")
     print("[SERVER] Payment simulation: confirms 3-5s after initiation")
     print()
-    server = ThreadingHTTPServer(('0.0.0.0', 3001), Handler)
-    server.serve_forever()
+import os
+PORT = int(os.environ.get("PORT", 3001))
+server = ThreadingHTTPServer(('0.0.0.0', PORT), Handler)
