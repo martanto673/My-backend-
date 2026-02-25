@@ -23,7 +23,7 @@ import base64
 import re
 import os
 
-DB_PATH = os.path.join(os.path.dirname(__file__), 'db', 'medilinka.db')
+DB_PATH = "/tmp/medilinka.db"  # Changed for Render deployment
 JWT_SECRET = 'medilinka_dev_jwt_secret_change_in_production'
 PLATFORM_FEE = 0.05
 
