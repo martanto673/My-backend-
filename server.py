@@ -414,6 +414,28 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, fmt, *args):
         print(f"[HTTP] {self.address_string()} {fmt % args}")
 
+    def do_GET(self):
+    # Root endpoint for previewing backend
+    if self.path == "/":
+        self.send_response(200)
+        self.send_header("Content-type", "text/plain")
+        self.end_headers()
+        self.wfile.write(b"Backend is live!")
+        return
+
+    # Health endpoint
+    if self.path == "/health":
+        self.send_response(200)
+        self.send_header("Content-type", "application/json")
+        self.end_headers()
+        self.wfile.write(b'{"status": "ok"}')
+        return
+
+    # Any other route → return error
+    self.send_response(404)
+    self.end_headers()
+    self.wfile.write(b'{"error": "File not found", "code": "ERROR"}')
+
     def do_OPTIONS(self):
         self.send_response(204)
         cors_headers(self)
