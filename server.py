@@ -23,10 +23,9 @@ import base64
 import re
 import os
 
-DB_PATH = "/tmp/medilinka.db"  # Changed for Render deployment
+DB_PATH = "/tmp/medilinka.db"  # Render-compatible database path
 JWT_SECRET = 'medilinka_dev_jwt_secret_change_in_production'
 PLATFORM_FEE = 0.05
-
 # ─── Database ────────────────────────────────────────────────────────────────
 def get_db():
     conn = sqlite3.connect(DB_PATH)
