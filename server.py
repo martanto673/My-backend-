@@ -1181,17 +1181,18 @@ setTimeout(() => location.reload(), 10000);
         cors_headers(self)
         self.end_headers()
         self.wfile.write(data)
-
 # ─── Main ──────────────────────────────────────────────────────────────────────
 if __name__ == '__main__':
     init_db()
     t = threading.Thread(target=run_expiry_job, daemon=True)
     t.start()
+
     print("[SERVER] MediLinka Live Backend")
-    print("[SERVER] http://localhost:3001")
-    print("[SERVER] Health: http://localhost:3001/health")
+    print("[SERVER] Health: /health")
     print("[SERVER] Payment simulation: confirms 3-5s after initiation")
     print()
-import os
-PORT = int(os.environ.get("PORT", 3001))
-server = ThreadingHTTPServer(('0.0.0.0', PORT), Handler)
+
+    import os
+    PORT = int(os.environ.get("PORT", 3001))
+    server = ThreadingHTTPServer(('0.0.0.0', PORT), Handler)
+    server.serve_forever()
